@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  r_project:
+    build: .
+    container_name: r_project
+    volumes:
+      - .:/app
+    command: ["Rscript", "main.R"]

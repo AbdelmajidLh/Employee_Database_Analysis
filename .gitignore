@@ -1,0 +1,19 @@
+# R Specific
+.Rhistory
+.Rdata
+.Rproj.user/
+
+# Logs
+logs/
+*.log
+
+# Environment and Dependencies
+renv/
+renv.lock
+.Renviron
+
+# Database files
+data/*.sqlite
+
+# Docker files
+*.tar
