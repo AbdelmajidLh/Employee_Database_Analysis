@@ -1,5 +1,11 @@
 # R Project: Employee Database Analysis
 
+# Hello, c'est [Abdelmajid][linkedin] 👋
+[![My Website](https://img.shields.io/website?style=for-the-badge&url=https%3A%2F%2Fabdelmajidlh.github.io%2FePortfolio%2F)][website] [![LinkedIn](https://img.shields.io/badge/LinkedIn-Abdelmajid%20EL%20HOU-blue?style=for-the-badge&logo=linkedin&logoColor=blue)][linkedin]
+
+[website]: https://abdelmajidlh.github.io/ePortfolio/
+[linkedin]: https://www.linkedin.com/in/aelhou/
+
 ## 📌 Project Overview
 This project aims to analyze employee data stored in CSV files and process it using an SQLite database. The workflow involves:
 
