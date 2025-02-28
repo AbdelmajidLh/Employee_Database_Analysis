@@ -6,7 +6,7 @@
 [website]: https://abdelmajidlh.github.io/ePortfolio/
 [linkedin]: https://www.linkedin.com/in/aelhou/
 
-## 📌 Project Overview
+## 📌 Project Overview 
 This project aims to analyze employee data stored in CSV files and process it using an SQLite database. The workflow involves:
 
 1. **Data Ingestion**: Reading CSV files containing employee records.
