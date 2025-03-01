@@ -1,5 +1,9 @@
 ### 7. Tests unitaires (tests.R)
+# Charger toutes les fonctions définies dans le dossier "scripts"
+scripts_files <- list.files("scripts", pattern = "\\.R$", full.names = TRUE)
+lapply(scripts_files, source)
 
+library(logger)
 library(testthat)
 
 log_info("Exécution des tests unitaires")

@@ -16,7 +16,7 @@ pipeline {
         }
         stage('✅ Run Tests') {
             steps {
-                bat 'Rscript -e "source(\'renv/activate.R\')"'
+                //bat 'Rscript -e "source(\'renv/activate.R\')"'
                 bat 'Rscript tests/tests.R'
     }
 }

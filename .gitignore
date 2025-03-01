@@ -4,7 +4,7 @@
 .Rproj.user/
 
 # Logs
-logs/
+logs/*
 *.log
 
 # Environment and Dependencies
@@ -17,3 +17,6 @@ data/*.sqlite
 
 # Docker files
 *.tar
+
+# reultats
+res/*.png

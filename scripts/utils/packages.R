@@ -1,13 +1,16 @@
-# Vérifier et installer {renv} en premier
-if (!requireNamespace("renv", quietly = TRUE)) {
-  install.packages("renv", ask = FALSE)
+# Vérifier et activer {renv} en premier
+if (file.exists("renv/activate.R")) {
+  source("renv/activate.R")
+} else {
+  if (!requireNamespace("renv", quietly = TRUE)) {
+    install.packages("renv", ask = FALSE)
+  }
+  renv::init(restart = FALSE)  # Initialiser renv seulement si nécessaire
 }
 
-# Initialisation ou restauration automatique de {renv}
-if (!file.exists("renv.lock")) {
-  renv::init(restart = FALSE)
-} else {
-  renv::restore(prompt = FALSE)
+# Vérifier si renv est bien activé avant la restauration
+if ("renv" %in% installed.packages()[, "Package"]) {
+  suppressMessages(renv::restore(prompt = FALSE))
 }
 
 # Liste des packages requis

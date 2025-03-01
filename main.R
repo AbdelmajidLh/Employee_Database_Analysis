@@ -1,30 +1,30 @@
 ### 7. Script principal (main.R)
+# importer les packags
+source("scripts/utils/packages.R")
+#source("scripts/utils/renv.R")
+
+
 # Création du dossier logs si inexistant
 if (!dir.exists("logs")) {
   dir.create("logs")
 }
 
-# Définition d'un seul fichier log par exécution
-log_file <- "logs/pipeline.log"
-
-source("scripts/utils/packages.R")
-source("scripts/utils/renv.R")
-
-# Définition d'un seul fichier log par exécution
 dir.create("logs", showWarnings = FALSE)
 log_file <- "logs/pipeline.log"
 file.remove(log_file)  # Supprime le fichier log existant pour chaque nouvelle exécution
 log_appender(appender_file(log_file))
 
+# activer l'environnement
+if (file.exists("renv/activate.R")) {
+  source("renv/activate.R")
+} else {
+  stop("Erreur : renv/activate.R est manquant. Exécutez renv::init() en local")
+}
+
+
+
 
 log_info("Démarrage du script principal")
-
-# Gestion de l'environnement virtuel avec renv
-#if (!file.exists("renv.lock")) {
-#  renv::init()
-#} else {
-#  renv::restore()
-#}
 
 # Charger les modules
 source("scripts/load_data.R")
@@ -71,3 +71,4 @@ log_info("Pipeline exécuté avec succès")
 
 log_info("SessionInfo()")
 sessionInfo()
+
