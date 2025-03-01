@@ -1,4 +1,7 @@
 ### 7. Tests unitaires (tests.R)
+
+source("scripts/utils/packages.R")
+
 # Charger toutes les fonctions définies dans le dossier "scripts"
 scripts_files <- list.files("scripts", pattern = "\\.R$", full.names = TRUE)
 lapply(scripts_files, source)
