@@ -4,7 +4,6 @@ pipeline {
     environment {
         SERVER_HOST = credentials('server-host')  // IP du serveur Ubuntu
         SERVER_USER = credentials('server-user')  // Utilisateur SSH
-        SERVER_SSH_KEY = credentials('server-ssh-key')  // Clé SSH pour Jenkins
     }
 
     stages {
@@ -29,26 +28,22 @@ pipeline {
 
         stage('📤 Transfer Docker Image to Server') {
             steps {
-                sshagent(['server-ssh-key']) {
-                    sh """
-                    scp -o StrictHostKeyChecking=no r_project.tar $SERVER_USER@$SERVER_HOST:/home/$SERVER_USER/
-                    """
-                }
+                sh """
+                scp -i ~/.ssh/id_rsa r_project.tar $SERVER_USER@$SERVER_HOST:/home/$SERVER_USER/
+                """
             }
         }
 
         stage('🚀 Deploy to Ubuntu Server') {
             steps {
-                sshagent(['server-ssh-key']) {
-                    sh '''
-                    ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST <<EOF
-                    docker load -i /home/$SERVER_USER/r_project.tar
-                    docker stop r_project || true
-                    docker rm r_project || true
-                    docker run -d --name r_project --restart=always -p 8000:8000 r_project
-                    EOF
-                    '''
-                }
+                sh """
+                ssh -i ~/.ssh/id_rsa $SERVER_USER@$SERVER_HOST <<EOF
+                docker load -i /home/$SERVER_USER/r_project.tar
+                docker stop r_project || true
+                docker rm r_project || true
+                docker run -d --name r_project --restart=always -p 8000:8000 r_project
+                EOF
+                """
             }
         }
     }
