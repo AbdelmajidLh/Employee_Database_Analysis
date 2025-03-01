@@ -14,7 +14,12 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/AbdelmajidLh/Employee_Database_Analysis.git'
             }
         }
-
+        stage('✅ Run Tests') {
+            steps {
+                bat 'Rscript -e "source(\'renv/activate.R\')"'
+                bat 'Rscript tests/tests.R'
+    }
+}
         stage('✅ Run Tests') {
             steps {
                 bat 'Rscript tests/tests.R'
