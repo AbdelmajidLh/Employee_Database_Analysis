@@ -30,8 +30,8 @@ pipeline {
         stage('📤 Transfer Docker Image to Server') {
             steps {
                 sshagent(['server-ssh-key']) {
-                    bat """
-                    scp r_project.tar $SERVER_USER@$SERVER_HOST:/home/$SERVER_USER/
+                    sh """
+                    scp -o StrictHostKeyChecking=no r_project.tar $SERVER_USER@$SERVER_HOST:/home/$SERVER_USER/
                     """
                 }
             }
@@ -40,14 +40,14 @@ pipeline {
         stage('🚀 Deploy to Ubuntu Server') {
             steps {
                 sshagent(['server-ssh-key']) {
-                    sh """
-                    ssh $SERVER_USER@$SERVER_HOST <<EOF
+                    sh '''
+                    ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST <<EOF
                     docker load -i /home/$SERVER_USER/r_project.tar
                     docker stop r_project || true
                     docker rm r_project || true
                     docker run -d --name r_project --restart=always -p 8000:8000 r_project
                     EOF
-                    """
+                    '''
                 }
             }
         }
