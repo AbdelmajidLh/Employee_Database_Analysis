@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        SERVER_HOST = credentials('server-host')
-        SERVER_USER = credentials('server-user')
-        SERVER_SSH_KEY = credentials('server-ssh-key')
+        SERVER_HOST = credentials('server-host')  // IP du serveur Ubuntu
+        SERVER_USER = credentials('server-user')  // Utilisateur SSH
+        SERVER_SSH_KEY = credentials('server-ssh-key')  // Clé SSH pour Jenkins
     }
 
     stages {

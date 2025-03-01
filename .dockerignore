@@ -1,3 +1,14 @@
 .Rproj.user
 .Rhistory
 .RData
+
+# Ignore les fichiers temporaires
+*.log
+*.tar
+*.tar.gz
+*.zip
+
+# Ignore les fichiers systèmes potentiels
+.DS_Store
+Thumbs.db
+
