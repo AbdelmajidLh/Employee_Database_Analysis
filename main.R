@@ -8,7 +8,7 @@ if (!dir.exists("logs")) {
 log_file <- "logs/pipeline.log"
 
 source("scripts/utils/packages.R")
-#source("scripts/utils/renv.R")
+source("scripts/utils/renv.R")
 
 # Définition d'un seul fichier log par exécution
 dir.create("logs", showWarnings = FALSE)
