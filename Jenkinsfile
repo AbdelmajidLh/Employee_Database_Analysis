@@ -20,11 +20,6 @@ pipeline {
                 bat 'Rscript tests/tests.R'
     }
 }
-        stage('✅ Run Tests') {
-            steps {
-                bat 'Rscript tests/tests.R'
-            }
-        }
 
         stage('🐳 Build Docker Image') {
             steps {
