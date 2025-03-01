@@ -8,8 +8,10 @@ logs/*
 *.log
 
 # Environment and Dependencies
-renv/
-renv.lock
+# Exclure tout le dossier renv sauf activate.R
+renv/*
+!renv/activate.R
+!renv.lock
 .Renviron
 
 # Database files
