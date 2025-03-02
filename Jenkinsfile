@@ -28,22 +28,19 @@ pipeline {
 
         stage('📤 Transfer Docker Image to Server') {
             steps {
-                sh """
-                scp -i ~/.ssh/id_rsa r_project.tar $SERVER_USER@$SERVER_HOST:/home/$SERVER_USER/
-                """
+                bat 'scp -i C:\\Users\\Abdelmajid\\.ssh\\id_rsa r_project.tar %SERVER_USER%@%SERVER_HOST%:/home/%SERVER_USER%/'
             }
         }
 
         stage('🚀 Deploy to Ubuntu Server') {
             steps {
-                sh """
-                ssh -i ~/.ssh/id_rsa $SERVER_USER@$SERVER_HOST <<EOF
-                docker load -i /home/$SERVER_USER/r_project.tar
-                docker stop r_project || true
-                docker rm r_project || true
-                docker run -d --name r_project --restart=always -p 8000:8000 r_project
-                EOF
-                """
+                bat '''
+                ssh -i C:\\Users\\Abdelmajid\\.ssh\\id_rsa %SERVER_USER%@%SERVER_HOST% ^
+                "docker load -i /home/%SERVER_USER%/r_project.tar && ^
+                docker stop r_project || true && ^
+                docker rm r_project || true && ^
+                docker run -d --name r_project --restart=always -p 8000:8000 r_project"
+                '''
             }
         }
     }
